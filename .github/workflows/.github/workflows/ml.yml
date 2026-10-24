@@ -37,3 +37,14 @@ jobs:
 
       - name: Train model and enforce quality gate
         run: python train.py --check-quality-gate
+
+        - name: Upload MLflow logs and model artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlops-training-results
+          path: |
+            mlruns/
+            artifacts/
+          if-no-files-found: warn
+          retention-days: 14
