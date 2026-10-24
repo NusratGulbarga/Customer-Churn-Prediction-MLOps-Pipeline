@@ -65,7 +65,7 @@ def test_missing_values_are_rejected(sample_data):
     invalid_data = sample_data.copy()
     invalid_data.loc[0, "contract"] = np.nan
 
-    with pytest.raises(ValueError, match="Missing values"):
+    with pytest.raises(ValueError, match="contains missing values"):
         validate_data(invalid_data)
 
 
